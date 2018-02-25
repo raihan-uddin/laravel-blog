@@ -1,19 +1,18 @@
-<!DOCTYPE html>
-<html lang="en">
+@extends('user/app')
 
-  <head>
-		@include('user/layouts/head')
-  </head>
-  <body>
-	
-	@include('user/layouts/header')
+@section('bg-img', asset('user/img/home-bg.jpg'))
 
-    <!-- Main Content -->
+@section('title', 'Programmer Blog')
+
+@section('sub-heading', 'Learn Together and Grow Together')
+
+@section('main-content')
+<!-- Main Content -->
     <div class="container">
       <div class="row">
         <div class="col-lg-8 col-md-10 mx-auto">
           <div class="post-preview">
-            <a href="post.html">
+            <a href=" {{ route('post') }}">
               <h2 class="post-title">
                 Man must explore, and this is exploration at its greatest
               </h2>
@@ -74,7 +73,4 @@
     </div>
 
     <hr>
-	
-	@include('user/layouts/footer')
-  </body>
-</html>
+@endsection
