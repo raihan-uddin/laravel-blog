@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 27, 2018 at 05:31 AM
+-- Generation Time: Feb 27, 2018 at 07:12 PM
 -- Server version: 10.1.30-MariaDB
 -- PHP Version: 7.2.2
 
@@ -66,6 +66,14 @@ CREATE TABLE `categories` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `categories`
+--
+
+INSERT INTO `categories` (`id`, `name`, `slug`, `created_at`, `updated_at`) VALUES
+(1, 'Technology', 'technology', '2018-02-26 23:06:44', '2018-02-26 23:06:44'),
+(2, 'JAVA', 'java', '2018-02-27 10:09:24', '2018-02-27 10:09:24');
 
 -- --------------------------------------------------------
 
@@ -147,7 +155,7 @@ CREATE TABLE `posts` (
 --
 
 INSERT INTO `posts` (`id`, `title`, `subtitle`, `slug`, `body`, `status`, `posted_by`, `image`, `like`, `dislike`, `created_at`, `updated_at`) VALUES
-(1, 'This is a first title', 'sub title', 'slug', '<p>\r\n</p><h3>Write Post Body Here\r\n                <small>Simple and fast</small></h3>\r\n\r\n<br><p></p>', 0, NULL, NULL, NULL, NULL, '2018-02-26 22:28:08', '2018-02-26 22:28:08');
+(2, 'Google Clips review', 'A couple of things to know about Google Clips', 'google-clips-review', '<p>\r\n</p><p>A couple of things to know about Google Clips: First, \r\nit is absolutely, unequivocally not a life-logging camera. Sure, it may \r\nbe called Clips and it does, in fact, have a clip on the back. But do \r\nnot clip it to your clothing.</p>\r\n<p></p>\r\n<p>Second, it is not an action camera. There are \r\nplenty available, if you’re in the market. Google Clips is not that. \r\nDon’t attach it to your skydiving helmet or motorcycle handlebars. \r\nThird, Clips is unequivocally not a security camera. Again, there are \r\nplenty of those. Here’s <a target=\"_blank\" rel=\"nofollow\" href=\"https://techcrunch.com/2018/02/19/the-20-wyze-security-camera-gets-a-sequel-with-improved-intelligence-and-amazon-echo-support/\">one you can buy for $20</a>.</p>\r\n<p>So then what, precisely, is Clips? A “smart camera,” according to \r\nGoogle. It’s a new category, of sorts. One that really couldn’t have \r\nexisted in this form without the current on-board technology. The device\r\n is actually a deceptively sophisticated collection of tech wrapped up \r\nin an adorable little package that looks like an Instagram icon that a \r\nfairy godmother turned into a real boy.</p>\r\n<p>It’s not exactly the “set it and forget it” device that we thought we\r\n were getting when the company first announced it way back when at its \r\nPixel 2 event. As advertised, Clips is intended to capture little \r\nmoments it might otherwise be tough to photograph. The system uses a \r\ncombination of AI and ML to identify familiar people and animals and \r\ndetermine the moments worth capturing.</p>\r\n\r\n\r\n<p>All of that happens through a robust combination of AI and ML, all \r\nprocessed directly on the device itself — rather than sending it off to a\r\n server for processing. This helps cut down on the processing time and \r\nmaintains some privacy, with nothing you shoot leaving the camera until \r\nyou choose to transfer it.</p>\r\n<p>It’s an interesting concept — and one that could certainly appeal to \r\nparents looking to capture those little moments without having to keep a\r\n smartphone or camera screen at the ready all the time. But is it $249 \r\nworth of interesting?</p>\r\n\r\n\r\n<p>A lot of thought clearly went into making Clips as simple as possible\r\n to operate. The result is an extremely minimalist object, roughly the \r\nsize of a silver dollar. On the front is a large, fixed lens. Twisting \r\nit turns the camera on an off, while a trio of white lights let you know\r\n that it’s on. Google says it purposely designed the Clips to be \r\nimmediately recognizable as a camera, so people are aware that they’re \r\nbeing recorded if they’ve never seen one before. And, indeed, it looks \r\nlike a real-world shorthand for the basic idea of a camera.</p>\r\n<p>Below the lens is a single button — the only one on the device \r\nitself. This is the shutter. Something the company apparently only added\r\n after getting feedback from users. Sure, the system is built around the\r\n notion of using machine learning to take the perfect photos and videos,\r\n but sometimes you want to override that and not leave it up to chance.</p><p>\r\n</p><p>On the bottom is a USB-C port for charging the battery and a small \r\nhole used to manually reset the system. The back of the device, \r\nmeanwhile, is empty, save for a Google “G” logo. There’s no built-in \r\nviewfinder, for several reasons, including, but not limited to: price, \r\nbattery life and the desire to simplify the product as much as possible.</p>\r\n<p>That means you’ll have to sort of eyeball the ideal spot to place the\r\n camera to get the right shot. Given the fact that it’s got a fixed \r\nfocal length, there isn’t a ton of wiggle room there. Google recommends \r\nplacing it around three to eight feet from your subject. You also can \r\ntap into Live Preview on the accompanying app to get a better idea of \r\nwhat the camera is seeing. The feature also will let you know whether \r\nthe camera is on a flat surface for better shots. Of course, staring at \r\nthat sort of defeats the whole “not having to keep a smartphone or \r\ncamera screen at the ready all the time” thing.</p>\r\n\r\n<p></p><p>\r\n</p><p>The Clips app is similarly simple, to a fault. By default, everything\r\n is captured in a seven-second video called… wait for it… a Clip. If \r\nyou’ve ever used Vine, Apple Live Photos or Google Motion Photos, you \r\nknow the deal here. In fact, the videos shot on device can be saved as \r\neither of the latter two and, even more handily, an animated GIF.</p>\r\n<p>Everything captured by the device is served up in a river. All of the\r\n shots appear as static images, until you scroll over them, at which \r\npoint you can view the full seven seconds of action.</p>\r\n\r\n<br><p></p><p></p>', 0, NULL, NULL, NULL, NULL, '2018-02-27 12:11:02', '2018-02-27 12:11:02');
 
 -- --------------------------------------------------------
 
@@ -189,6 +197,19 @@ CREATE TABLE `tags` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `tags`
+--
+
+INSERT INTO `tags` (`id`, `name`, `slug`, `created_at`, `updated_at`) VALUES
+(1, 'Laravel', 'laravel', '2018-02-26 22:59:28', '2018-02-26 22:59:28'),
+(2, 'Django', 'django', '2018-02-27 10:02:35', '2018-02-27 10:02:35'),
+(3, 'Codeigniter', 'codeigniter', '2018-02-27 11:21:28', '2018-02-27 11:21:28'),
+(4, 'Ruby on Rails', 'ruby-on-rails', '2018-02-27 11:22:23', '2018-02-27 11:22:23'),
+(5, 'Flask', 'flask', '2018-02-27 11:22:46', '2018-02-27 11:22:46'),
+(6, 'JQuery', 'jquery', '2018-02-27 11:23:22', '2018-02-27 11:23:22'),
+(7, 'ASP.NET MVC', 'asp.net-mvc', '2018-02-27 11:23:57', '2018-02-27 11:23:57');
 
 -- --------------------------------------------------------
 
@@ -298,7 +319,7 @@ ALTER TABLE `admin_roles`
 -- AUTO_INCREMENT for table `categories`
 --
 ALTER TABLE `categories`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `category_posts`
@@ -334,7 +355,7 @@ ALTER TABLE `roles`
 -- AUTO_INCREMENT for table `tags`
 --
 ALTER TABLE `tags`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `users`

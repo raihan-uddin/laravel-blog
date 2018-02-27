@@ -41,7 +41,8 @@
 	                  <input type="text" class="form-control" id="slug" name="slug" placeholder="Slug">
 	                </div>
 	                 <div class="form-group">
-                		<button type="submit" class="btn btn-primary">Submit</button>
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                		<a href="{{ route('tag.index') }}" class="btn btn-warning">Back</a>
               		</div>
                 </div>
               </div>
