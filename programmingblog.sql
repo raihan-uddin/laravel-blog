@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 25, 2018 at 07:26 PM
+-- Generation Time: Feb 27, 2018 at 05:31 AM
 -- Server version: 10.1.30-MariaDB
 -- PHP Version: 7.2.2
 
@@ -133,14 +133,21 @@ CREATE TABLE `posts` (
   `subtitle` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
   `slug` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
   `body` text COLLATE utf8mb4_unicode_ci NOT NULL,
-  `status` tinyint(1) NOT NULL,
-  `posted_by` int(11) NOT NULL,
-  `image` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `like` tinyint(1) NOT NULL,
-  `dislike` tinyint(1) NOT NULL,
+  `status` tinyint(1) DEFAULT '0',
+  `posted_by` int(11) DEFAULT NULL,
+  `image` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `like` tinyint(1) DEFAULT NULL,
+  `dislike` tinyint(1) DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `posts`
+--
+
+INSERT INTO `posts` (`id`, `title`, `subtitle`, `slug`, `body`, `status`, `posted_by`, `image`, `like`, `dislike`, `created_at`, `updated_at`) VALUES
+(1, 'This is a first title', 'sub title', 'slug', '<p>\r\n</p><h3>Write Post Body Here\r\n                <small>Simple and fast</small></h3>\r\n\r\n<br><p></p>', 0, NULL, NULL, NULL, NULL, '2018-02-26 22:28:08', '2018-02-26 22:28:08');
 
 -- --------------------------------------------------------
 
@@ -309,7 +316,7 @@ ALTER TABLE `migrations`
 -- AUTO_INCREMENT for table `posts`
 --
 ALTER TABLE `posts`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `post_tags`
