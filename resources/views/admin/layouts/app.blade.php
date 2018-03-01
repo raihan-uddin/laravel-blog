@@ -8,7 +8,7 @@
 		@include('admin.layouts.header')
 		@include('admin.layouts.sidebar')
 		@section('main-content')
-      @show
+      		@show
 		@include('admin.layouts.footer')
 	</div>
 	@include('admin.layouts.footer_scripts')

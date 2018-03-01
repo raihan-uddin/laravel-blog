@@ -1,5 +1,10 @@
 @extends('admin.layouts.app')
 
+@section('headSection')
+<!-- Select2 -->
+<link rel="stylesheet" href="{{ asset('admin/bower_components/select2/dist/css/select2.min.css')}}">
+@endsection
+
 @section('main-content')
  <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
@@ -46,18 +51,37 @@
 	                  <input type="text" class="form-control" id="slug" name="slug" placeholder="Slug" value="{{ $post->slug }}">
 	                </div>
                 </div>
+                <br>
                 <div class="col-lg-6">
 	                <div class="form-group">
-	                  <label for="image">Image</label>
-	                  <input type="file" id="image" name="image">
-
-	                  <p class="help-block">Select an image.</p>
+                    <div class="pull-right">
+                      <label for="image">Image</label>
+                      <input type="file" id="image" name="image">
+                      <p class="help-block">Select an image.</p>
+                    </div>
+                    <div class="checkbox pull-left">
+                      <label>
+                        <input type="checkbox" name="status" value="1" @if($post->status == 1) checked="checked" @endif> Publish
+                      </label>
+                    </div>
 	                </div>
-	                <div class="checkbox">
-	                  <label>
-	                    <input type="checkbox" name="status" @if($post->status == 1) checked="checked" @endif> Publish
-	                  </label>
-	                </div>
+                  <br>                  
+                  <div class="form-group" style="margin-top: 18px;">
+                      <label>Select Tags</label>
+                      <select class="form-control select2 select2-hidden-accessible" multiple="" data-placeholder="Select Tags" style="width: 100%;" tabindex="-1" aria-hidden="true" name="tags[]">
+                        @foreach ($tags as $tag)
+                          <option value="{{$tag->id}}">{{ $tag->name }}</option>
+                        @endforeach
+                      </select>
+                  </div>
+                  <div class="form-group">
+                      <label>Select Categories</label>
+                      <select class="form-control select2 select2-hidden-accessible" multiple="" data-placeholder="Select Categories" style="width: 100%;" tabindex="-1" aria-hidden="true" name="categories[]">
+                        @foreach ($categories as $category)
+                          <option value="{{$category->id}}">{{ $category->name }}</option>
+                        @endforeach
+                      </select>
+                  </div>
 	            </div>
               </div>
               <!-- /.box-body -->
@@ -95,4 +119,16 @@
     <!-- /.content -->
   </div>
   <!-- /.content-wrapper -->
+@endsection
+
+@section('footerSection')
+<!-- Select2 -->
+<script src="{{ asset('admin/bower_components/select2/dist/js/select2.full.min.js')}}"></script>
+<!-- Page script -->
+<script>
+  $(function () {
+    //Initialize Select2 Elements
+    $('.select2').select2()
+  })
+</script>
 @endsection

@@ -37,7 +37,7 @@
             <li class="active"><a href="{{ route('post.index') }}"><i class="fa fa-circle-o"></i> Post</a></li>
             <li><a href="{{ route('category.index') }}"><i class="fa fa-circle-o"></i> Categories</a></li>
             <li><a href="{{ route('tag.index') }}"><i class="fa fa-circle-o"></i> Tags</a></li>
-            <li><a href="{{ route('user.index') }}""><i class="fa fa-circle-o"></i> User</a></li>
+            <li><a href="{{ route('user.index') }}"><i class="fa fa-circle-o"></i> User</a></li>
           </ul>
         </li>
 {{-- 
@@ -50,7 +50,6 @@
           </a>
         </li>
          --}}
-        </li>
       </ul>
     </section>
     <!-- /.sidebar -->
