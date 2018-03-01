@@ -62,7 +62,8 @@
                     <td>{{ $post->subtitle}}</td>
                     <td>{{ $post->slug}}</td>
                     <td>{{ $post->created_at}}</td>
-                    <td><a href="{{ route('post.edit', $post->id) }}" class="btn btn-primary"><i class="fa fa-fw fa-edit"></i></span></a></td>
+                    <td>
+                      <a href="{{ route('post.edit', $post->id) }}" class="btn btn-primary"><i class="fa fa-fw fa-edit"></i></span></a></td>
                     <td>
                       <form method="post" id="delete-form-{{ $post->id }}" action="{{ route('post.destroy', $post->id) }}" >
                         {{ csrf_field() }}
