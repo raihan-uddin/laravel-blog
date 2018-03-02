@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 28, 2018 at 08:05 PM
+-- Generation Time: Mar 02, 2018 at 05:43 AM
 -- Server version: 10.1.30-MariaDB
 -- PHP Version: 7.2.2
 
@@ -72,8 +72,10 @@ CREATE TABLE `categories` (
 --
 
 INSERT INTO `categories` (`id`, `name`, `slug`, `created_at`, `updated_at`) VALUES
-(1, 'Technology', 'technology', '2018-02-26 23:06:44', '2018-02-26 23:06:44'),
-(2, 'JAVA', 'java', '2018-02-27 10:09:24', '2018-02-27 10:09:24');
+(1, 'Java', 'java', '2018-03-01 22:16:29', '2018-03-01 22:16:29'),
+(2, 'Python', 'python', '2018-03-01 22:16:46', '2018-03-01 22:16:46'),
+(3, 'PHP', 'php', '2018-03-01 22:17:01', '2018-03-01 22:17:01'),
+(4, 'Technology', 'technology', '2018-03-01 22:39:32', '2018-03-01 22:39:32');
 
 -- --------------------------------------------------------
 
@@ -82,12 +84,18 @@ INSERT INTO `categories` (`id`, `name`, `slug`, `created_at`, `updated_at`) VALU
 --
 
 CREATE TABLE `category_posts` (
-  `id` int(10) UNSIGNED NOT NULL,
-  `post_id` int(11) NOT NULL,
-  `category_id` int(11) NOT NULL,
+  `post_id` int(10) UNSIGNED NOT NULL,
+  `category_id` int(10) UNSIGNED NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `category_posts`
+--
+
+INSERT INTO `category_posts` (`post_id`, `category_id`, `created_at`, `updated_at`) VALUES
+(3, 4, '2018-03-01 22:42:24', '2018-03-01 22:42:24');
 
 -- --------------------------------------------------------
 
@@ -106,16 +114,16 @@ CREATE TABLE `migrations` (
 --
 
 INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
-(1, '2014_10_12_000000_create_users_table', 1),
-(2, '2014_10_12_100000_create_password_resets_table', 1),
-(3, '2018_02_25_162335_create_posts_table', 1),
-(4, '2018_02_25_162849_create_tags_table', 1),
-(5, '2018_02_25_163030_create_categories_table', 1),
-(6, '2018_02_25_163148_create_category_posts_table', 1),
-(7, '2018_02_25_175706_create_post_tags_table', 1),
-(8, '2018_02_25_181258_create_admins_table', 1),
-(9, '2018_02_25_181754_create_roles_table', 1),
-(10, '2018_02_25_181852_create_admin_roles_table', 1);
+(33, '2014_10_12_000000_create_users_table', 1),
+(34, '2014_10_12_100000_create_password_resets_table', 1),
+(35, '2018_02_25_162335_create_posts_table', 1),
+(36, '2018_02_25_162849_create_tags_table', 1),
+(37, '2018_02_25_163030_create_categories_table', 1),
+(38, '2018_02_25_163148_create_category_posts_table', 1),
+(39, '2018_02_25_175706_create_post_tags_table', 1),
+(40, '2018_02_25_181258_create_admins_table', 1),
+(41, '2018_02_25_181754_create_roles_table', 1),
+(42, '2018_02_25_181852_create_admin_roles_table', 1);
 
 -- --------------------------------------------------------
 
@@ -141,7 +149,7 @@ CREATE TABLE `posts` (
   `subtitle` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
   `slug` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
   `body` text COLLATE utf8mb4_unicode_ci NOT NULL,
-  `status` tinyint(1) DEFAULT '0',
+  `status` tinyint(1) DEFAULT NULL,
   `posted_by` int(11) DEFAULT NULL,
   `image` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `like` tinyint(1) DEFAULT NULL,
@@ -155,9 +163,7 @@ CREATE TABLE `posts` (
 --
 
 INSERT INTO `posts` (`id`, `title`, `subtitle`, `slug`, `body`, `status`, `posted_by`, `image`, `like`, `dislike`, `created_at`, `updated_at`) VALUES
-(1, 'Power User দের জন্য গুগলের ৮৯টি Hidden টিপস এন্ড ট্রিক্স', 'Power User দের জন্য গুগলের ৮৯টি Hidden টিপস এন্ড ট্রিক্স', 'Power-User-দের -জন্য-গুগলের-৮৯টি-Hidden-টিপস-এন্ড-ট্রিক্স', '<p>\r\n</p><p>টেকটিউনসে আমার প্রায় ৬ বছর হতে চলছে! তো অনেক দিন হয়ে গেল এক্সক্লুসিভ \r\nকিছু লিখি না। তাই আজ কিছু অন্যরকম এবং বিশাল আকৃতির টিউন করতে মন চাইলো। \r\nযেই কথা সেই কাজ!</p><p>আপনি ইন্টারনেট ব্যবহার করে আর দিনে অন্তত একবার \r\nহলেও গুগলে প্রবেশ করেন না এমন লোক খুঁজে পাওয়া যাবে না। আমি টিউনার \r\nগেমওয়ালা আজ টেকটিউনসে গুগল সম্পর্কে জব্বর ৮৯টি টিপস এন্ড ট্রিক্স নিয়ে \r\nএসেছি যা হয়তো আগে আপনারা জানতেন না। যেহেতু এটি একটু বড়সড় টিউন  তাই \r\nভূমিকায় আর বেশি কথা না বাড়িয়ে চলুন সরাসরি মূল টিউনে চলে যাই, তো হাই \r\nহ্যালো না বলে সরাসরি টিউনে চলে যাচ্ছি!</p><h2>১) টাইমার বা স্টপ-ওয়াচ!</h2><p></p><p>গুগল সার্চ বক্সে Set timer for ## minutes  লিখলে তত মিনিটের জন্য গুগল আপনাকে টাইমার হিসেবে কাজ করাবে।</p><h2>২) সুর্যদয় এবং সুর্যাস্ত!</h2><p>\r\nগুগলে আপনি প্রতিদিনের সুর্যদয় এবং সুর্যাস্তের সময় জেনে নিতে পারবেন খুবই \r\nসহজে। এর জন্য Sunrise in ## অথবা Sunset in ## লিখে গুগলে সার্চ দিলেই \r\nহবে। এখানে ড্যাশের জায়গায় আপনার কাঙ্খিত জায়গার নাম লিখতে হবে।&nbsp;</p><p>\r\n</p><h2>৩) আবহাওয়া!</h2>\r\n\r\n\r\nগুগলের সাহায্যে আপনি বিশ্বের যেকোনো স্থানের আবহাওয়ার খবরেও চোখ বুলিয়ে \r\nনিতে পারবেন। শুধু সার্চ বক্সে লিখুন forecast in ## তাহলেই হবে। এখানেও \r\nড্যাশের জায়গায় আপনার কাঙ্খিত জায়গার নাম লিখতে হবে।&nbsp;<p></p><p>\r\n</p><h2>৪) ডাবল কোট সার্চ!</h2>\r\n\r\n<p></p><p>\r\nকোনো নির্দিষ্ট বিষয়ে গুগল থেকে বেশি একুরেট এবং সুক্ষ সার্চ রেজাল্ট পেতে \r\nচাইলে ডাবল কোটস দিয়ে সার্চ দিন। যেমন \"bangla songs\", \"hindi movies\" \r\nইত্যাদি।&nbsp;</p><p>\r\n</p><h2>৫) ব্যারেল রোল!</h2>\r\n\r\n\r\n<p>গুগল সার্চ বক্সে শুধু লিখুন do a barrel roll আর নিজেই মজা লুটুন!</p><h2>৬) কোনো ওয়েবসাইট থেকে নির্দিষ্ট বিষয়ের সার্চ</h2>\r\n\r\n<p></p><p>\r\n</p><p>কোনো ওয়েবসাইট থেকে নির্দিষ্ট বিষয়ের সার্চ রেজাল্ট পেতে চাইলে গুগলে \r\nসার্চ আইটেম লিখে কোনোল চিহ্ন দিয়ে পরে ওয়েবসাইটের নাম লিখে সার্চ দিতে \r\nহবে। যেমন how to delete facebook account:<a target=\"_blank\" rel=\"nofollow\" href=\"http://www.facebook.com\">www.facebook.com</a></p><h2>৭) নির্দিষ্ট টাইটেলের সার্চ!</h2>\r\n\r\n<p></p><p>\r\n</p><p>আপনি যদি কোনো নির্দিষ্ট কিওর্য়াডের টাইটেলের সার্চ রেজাল্ট পেতে চান \r\nতাহলে গুগল বক্সে অন্যভাবে লিখতে হবে। যেমন ২০১৭ সালের বেস্ট অ্যান্ড্রয়েড \r\nএপপস লিস্ট। তাহলে বক্সে লিখুন best android apps intitle:2016 এভাবে \r\nলিখুন।</p><h2>৮) গুগল নিউজপ্যাপার</h2>\r\n\r\n<p></p><p>\r\n</p><p>গুগলে আপনি ১৯৯৮ সাল থেকে ২০১০ সাল পর্যন্ত ইংরেজি বহু ধরনের \r\nনিউজপ্যাপারের কালেকশন পাবেন। শুধু লিখুন google newspaper collection আর \r\nনিজেই ট্রাই করে দেখতে পারেন। দুঃখের বিষয় হচ্ছে গত কয়েক বছর ধরে গুগল \r\nতাদের এই ফিচারের কোনো আপগ্রেড করেনি।</p><h2>৯) ফ্লাইট স্ট্যাটাস</h2>\r\n\r\n\r\n<p>বিমানের ফ্লাইট স্ট্যাটাস আপনি গুগল সার্চ বক্সেই পেযে যাবেন খুব সহজেই! এর জন্য সার্চ বক্সে ফ্লাইট নাম আর নাম্বার লিখে সার্চ দিন।</p><h2>১০) ভিন্ন এঙ্গেলের গুগল</h2><p>\r\n</p><p>গুগলকে অন্য এঙ্গেলে দেখবার জন্য আপনি সার্চ বক্সে লিখুন askew আর নিজেই মজা লুটুন!</p><h2>১১) গুগল প্যাকম্যান!</h2><p>গুগল সার্চ পেইজেই প্যাকম্যান খেলার জন্য বক্সে লিখুন google pacman আর নিজেই খেলা শুরু করে দিন।</p><h2>১২) এরিয়া কনভার্ট</h2><p>গুগলে যেকোনো ধরনের পরিমাপ আপনি খুব সহজেই করতে পারবেন। এর জন্য সরাসরি \r\nনির্দিষ্ট বিষয়বস্তু লিখে সার্চ দিতে হবে। যেমন 10 meters to inches \r\nইত্যাদি।</p><h2>১৩) কোম্পানির মালিকের নাম!</h2><p>\r\n</p><p>গুগলে আপনি কোনো নির্দিষ্ট কোম্পানির মালিকের নাম খুব সহজেই জেনে নিতে \r\nপারবেন। এরজন্য founder of ## বা owner of ## লিখুন। ড্যাসের জায়গায় \r\nকোম্পানি নাম লিখতে হবে।</p><h2>১৪) Zerg Rush</h2>\r\n\r\n<p></p><p>গুগল সার্চ বক্সে লিখুন Zer Rush আর নিজেই এই মজাদার গেমটি পরখ করে নিতে পারবেন।</p><h2>১৫) কারেন্সি কনভার্টার</h2><p>\r\n</p><p>মুদ্রা বা কারেন্সি কনভার্টার হিসেবেও আপনি গুগলকে ব্যবহার করতে পারবেন।\r\n এরজন্য বক্সে লিখতে হবে যেটার সাথে কনভার্টর করতে চান সেটা যেমন 100 usd \r\nto bdt ইত্যাদি।</p><h2>১৬) টিপ ক্যালকুলেটর</h2><p>টিপ ক্যালকুলেটর হিসেবেও আপনি গুগল সার্চ পেইজকে ব্যবহার করতে পারবেন। এর জন্য বক্সে লিখুন tip calculator!</p><h2>১৭) বুক ফাইন্ডার</h2>\r\n\r\n<p></p>\r\n\r\n<p></p>\r\n<p>গুগলকে আপনি বুক ফাইন্ডার হিসেবেও ইউজ করতে পারবেন। যেমন books written by ## লেখকের নাম আর ব্যাস!</p><h2>১৮) গুগল ইমেইজ রিভার্স সার্চ</h2><p>\r\n</p><p>এটা হয়তো কেউ কেউ জানেন। আপনি গুগল ইমেইজয়ে গিয়ে কোনো ইমেইজ কে আপলোড করে ইমেইজ ভিক্তিক সার্চ রেজাল্ট পেতে পারবেন।</p><h2>১৯) ওকে গুগল!</h2>\r\n\r\n<p></p><p>\r\n</p><p>আপনি লক্ষ্য করলে দেখে থাকবেন যে গুগলের সার্চ বক্সের ডান পাশে একটি \r\nমাইক্রোফোনের আইকন রয়েছে। এর মাধ্যমে আপনি গুগলে ভয়েস ভিক্তিক সার্চ করতে \r\nপারবেন।</p><h2>২০) ডিফাইন</h2>\r\n\r\n<p></p><p>\r\n</p><p>কোনো নির্দিষ্ট বিষয়ের সংঙ্গাও আপনি গুগল সার্চে পেতে পারেন। এর জন্য \r\nশব্দের আগে Define লিখে শব্দটি লিখুন এবং এন্টার দিন। যেমন Define \r\ncomputer, Define mobile ইত্যাদি।</p><h2>২১) একটি রেজাল্টে দুটি কিওয়ার্ড সার্চ!</h2>\r\n\r\n<p></p><p>\r\n</p><p>আপনি চাইলে একটি সার্চ বক্সে একই সাথে দুটি সার্চ দিতে পারবেন। দুটি \r\nএকসাথে সার্চ দিতে চাইলে একটি পরে and লিখে পরবর্তী শব্দটি লিখুন এবং সার্চ\r\n দিন।</p><h2>২২) ডিসট্যান্স মাপুন!</h2>\r\n\r\n<p></p><p>\r\n</p><p>আপনি চাইলে গুগলে একটি স্থান থেকে অপর স্থানের দুরত্ব মাপতে পারবেন। এর জন্য এভাবে লিখে সার্চ দিন distance from dhaka to khulna.</p><h2>২৩) রেস্টুরেন্ট!</h2>\r\n\r\n<p></p><p>\r\n</p><p>আপনি চাইলে খুব সহজে আপনার আশেপাশের কোনো রেস্টুরেন্ট গুগলের সাহায্যে \r\nখুঁজতে পারবেন। এর জন্য গুগল সার্চ বক্সে লিখুন restaurants near me এবং \r\nএন্টার দিন।</p><h2>২৪) ট্রাভেল টাইম</h2>\r\n\r\n<p></p><p>\r\n</p><p>আপনি চাইলে এক শহর থেকে অন্য শহরের বিমানের ট্রাভেল টাইম গুগলের মাধ্যমে\r\n ক্যালকুলেট করতে পারবেন। এর জন্য এভাবে লিখে সার্চ দিন travel time \r\nbetween dhaka and new work.</p><h2>২৫) আইপি ঠিকানা!</h2>\r\n\r\n<p></p><p>\r\n</p><p>আপনার আইডি এড্রেস ও আপনি চাইলে গুগলের মাধ্যমে খুঁজে নিতে পারবেন। এর জন্য সরাসরি সার্চ বক্সে লিখুন ip address এবং এন্টার দিন।</p><h2>২৬) এন্ড অপারেটর!</h2>\r\n\r\n<p></p><p>\r\n</p><p>আপনি যদি কোনো নির্দিষ্ট ওয়েবসাইট থেকে একই সাথে দুটি সার্চ রেজাল্ট \r\nখুঁজে পেতে চান তাহলে এই টিপসটি অনুসরণ করুন। যেমন apple and \r\niphone6:<a target=\"_blank\" rel=\"nofollow\" href=\"http://www.apple.com\">www.apple.com</a></p><h2>২৭) বিশ্বব্যাপী রেজাল্ট!</h2>\r\n\r\n<p></p><p>\r\n</p><p>আপনি লক্ষ্য করলে দেখবেন যে ব্রাউজে গুগল ডট কম লিখলে এটি আপনার দেশ \r\nভিক্তিক গুগল পেজে রিডাইরেক্ট করে নিয়ে যাবে যেমন google.com.bd বা \r\ngoogle.com.in এবং এই সাইটে সার্চ রেজাল্ট গুলো আপনার দেশ ভিক্তিক হয়ে \r\nথাকবে। গুগলের অরিজিনাল পেজে যেতে চাইলে সরাসরি লিখুন <a target=\"_blank\" rel=\"nofollow\" href=\"http://www.google.com/ncr\">http://www.google.com/ncr</a></p><h2>২৮) র্স্টাটপেইজ!</h2>\r\n\r\n<p></p><p>\r\n</p><p>ওয়েবে সত্যিকার অর্থে private ভাবে কোনো কিছু ব্রাউজ করতে চাইলে গুগলের আরেকটি প্রজেক্ট <a target=\"_blank\" rel=\"nofollow\" href=\"http://www.startpage.com\">http://www.startpage.com</a> য়ে চলে যেতে পারেন। এই সাইট থেকে আপনার লোকেশন, আইডি এড্রেস ইত্যাদি লুকিয়ে রেখে আপনি ব্রাউজ করতে পারবেন।</p><h2>২৯) গুগল সার্চ সেটিংকে কাস্টমাইজ করুন</h2>\r\n\r\n<p></p><p>\r\n</p><p>আপনি আপনার নিজের মতো করে গুগল সার্চ রেজাল্টকে সেটিং করে কাস্টমাইজড \r\nকরে নিতে পারবেন। এর জন্য গুগলের সেটিং অপশনে যান। এখানে গিয়ে আপনি প্রতি \r\nপেজে কতগুলো সার্চ রেজাল্ট দেখাবে সেটা, প্রাইভেট রেজাল্ট দেখাবে কিনা, \r\nস্পিকার ফিচারটি থাকবে কিনা ইত্যাদি বহু কিছুর সেটিংস আপনি খুঁজে পাবেন।</p><h2>৩০) ফাইল টাইপ সার্চ</h2>\r\n\r\n<p></p><p>\r\n</p><p>আপনি যদি কোনো সার্চ রেজাল্টে নির্দিষ্ট ফাইল টাইপ খুঁজে পেতে চান তাহলে\r\n কোলন দিয়ে শব্দের পর ফাইল টাইপের নামটি লিখে সার্চ দিন। যেমন chinese \r\nhistory:pdf, doom3:mkv ইত্যাদি।</p><h2>৩১) পছন্দমতো ডিউরেশন নির্ধারণ</h2>\r\n\r\n<br><p></p>\r\n\r\n<br><p></p><p></p>\r\n\r\n<p></p>', 0, NULL, NULL, NULL, NULL, '2018-02-28 12:58:53', '2018-02-28 12:58:53'),
-(2, 'Android এ জিরো থেকে হিরো [পর্ব-০৯] :: কাস্টম রম?', 'নিজের ফোনের জন্য কোথায় পাব? আর কিভাবে দিব? চলুন জেনে নেই', 'Android-এ-জিরো-থেকে-হিরো-পর্ব-০৯-কাস্টম-রম', '<p>\r\n</p><p>সুপ্রিয় ভিউয়ার, <b>আশাকরি সবাই ভালো আছেন। </b></p><h2>কিছু কথাঃ</h2><p>টিউন শুরু করার আগে কিছু কথা বলে নেয়া প্রয়োজনীয় বলে মনে করলাম।<br>\r\n বিভিন্ন কারনে এই সিরিজ 3 মাসের বেশি দিন ধরে বন্ধ ছিলো। ভাবছিলাম আর \r\nরুটের টিউন করব না। কিন্তু এটা নেশার মত হয়ে গেছে, তাই ছাড়তে পারলাম না।<br>\r\n আমিও যেহেতু মানুষ তাই আমিও ব্যস্ত থাকতে পারি, আপনাদের অনেকেরই প্রশ্নের \r\nউত্তর দেবার সময় হয় না। আবার অনেকেই এমন প্রশ্ন করেন যেটা নিয়ে আগেই টিউন \r\nহয়েছে, তাই রিপ্লে দেই না। <b>তো এই কারনে অহেতুক ফেসবুকে অকথ্য ভাষায় গালিগালাজ করে ব্লক করাটা আপনাদের শোভায় না। </b><br> আশা করি পরবর্তীতে এসব কথা আবার না লিখতে হয়।<br> টিউন এর টাইটেল দেখেই হয়ত বুঝেই গেছেন এটা অ্যান্ড্রয়েড নিয়ে চেইন বা সিরিজ টিউন।</p><h2>Android.</h2><p>বর্তমানের\r\n জনপ্রিয় মোবাইল অপারেটিং সিস্টেম। আর ওপেন সোর্স হওয়ায় এর মোড / চেঞ্জ \r\nসবাই করতে পারে। আমার এই সিরিজের মাধ্যমে নতুনদের কে সঠিক ভাবে কাজ করার \r\nপ্রক্রিয়া, ধাপ ও বিভিন্ন ট্রিক সম্পর্কে জানানো হবে। তাই আশা করি সাথেই \r\nথাকবেন।<br> তার আগে একটা ধাপ জেনে নিন যেটা সবার জানা উচিৎ। এই ধাপেধাপে \r\nকাজ করলে ফোন নিয়ে কাস্টোমার কেয়ারে দৌড়াদৌড়ি করতে হবে না (আমার মনে হয়)<br> *<br> *<br> <b>রুট\r\n &gt; Xposed &gt; কাস্টম রিকভারী &gt; স্টক রমের ব্যাকাপ &gt; ফার্মওয়ার \r\nব্যাকাপ (Optional) &gt; নতুন রম পোর্ট &gt; নতুন রম দেওয়া.</b> (ভার্সন ভেদে কাস্টম রিকভারীর সিরিয়াল একটু চেঞ্জ হবে)<br> *<br> *<br>\r\n আমার এই সিরিজে এই ধাপ গুলো বেশ ভালোভাবেই বলা হবে। অনেকে হয়ত এই ধাপ গুলো\r\n নিয়ে বিভিন্ন মত প্রকাশ করবে তাদের উদ্দ্যেশেঃ আমি আরো অনেক জিনিস স্কিপ /\r\n বাদ দিয়ে ছোট করে নিয়েছি।</p><p><b>আজ সিরিজ এর ৯ম পর্ব। ছোট কথায় আজকের \r\nসিরিজ হচ্ছে কাস্টম রমের উপর। আজকে শুধু এর উপর বকে যাব। পরের পার্ট এ আসব \r\nএর কাজ গুলো কিভাবে করব তা নিয়ে। </b></p><p>তো চলুন শুরু করা যাক।</p><h2>প্রথম কথাঃ</h2><p>এখনো\r\n যদি চিন্তা করেন যে কাস্টম রম কি জিনিস? তাহলে এই টিউন পড়া আপনার বৃথা। এই\r\n টিউন তাদেরই জন্য যারা একটু এডভান্স হয়েছেন। যারা আমার সিরিজের 1-8 পর্ব \r\nঅবধি পড়ে কাজ করে সাকসেসফুল হয়েছেন। তো যদি আগের পর্ব গুলো পড়ে না থাকেন তো\r\n প্রোফাইল এ গিয়ে পড়ে নিন। আর যারা পড়ে ফেলেছেন তারা চলুন আগে যাই। কাস্টম \r\nরম জিনিস টাকে চলুন একটু আলাদাভাবে জানি।<br> এটাকে দুই ধরনের ভেবে নেইঃ<br> ★ OS আপডেট দেয়।<br> ★ OS আপডেট দেয় না।<br> এই দুই জিনিস নিয়ে ভাগ করলে রম পোর্ট করাটা সহজ হবে।<br> আগে এদের নিয়ে বিস্তারিত জেনে নেই।</p><h2>OS আপডেট দেয়:</h2><p>ধরুন\r\n আপনি কিটক্যাট এ আছেন। এতে আপনি DU Screen Recorder ব্যবহার করতে পারবেন \r\nনা। কিন্তু যদি আপনি এই ধরনের কোন কাস্টম রম দিয়ে ফোনের OS আপডেট করে ললিপপ\r\n বা মার্শম্যালো কিংবা নুগ্যাট করে নেন তবে কিন্তু অনায়েসে এই app ইউজ করতে\r\n পারবেন। এই ধরনের রমের সমস্যা হচ্ছে কিছু বাগ থাকতে পারে। যেটা ফিক্স করা \r\nনাও যেতে পারে। এই ধরনের রমের নাম হচ্ছেঃ CM, AOSP, Tesla OS, Resurrection\r\n Remix, crDroid, ইত্যাদি, অথবা যেকোন CM based রম। যেটা টিউন এ লেখা থাকে।\r\n এ ধরনের রম পোর্ট করতে একটু বেশি খাটুনিও করতে হয়।</p><h2>OS আপডেট দেয় না:</h2><p>এ\r\n ধরনের রম শুধু আপনার ফোনের ui চেন্জ করে দিবে। কোন ভার্সন আপডেট দিবে না। \r\nমানে আপনি কিটক্যাট এ থাকলে কিটক্যাট এই থাকবেন। এ ধরনের রম সাধারণত বাগলেস\r\n হয়, ফাস্ট, ব্যাটারি সেভিং হয়। এ যেহেতু এটা os আপডেট দেয় না, তাই এর \r\nপোর্ট করা সহজ। Stay OS এর মধ্যে অন্যতম। তাছাড়া বিভিন্ন ফোনের নামের রম \r\nগুলো এই ধরনের রম।</p><h2>কোন ধরনের রম দিয়ে শুরু করবঃ</h2><p>হ্যা, এটা একটা সহজ কনফিউশন। এটা আপনার চাহিদার উপর নির্ভরশীল।<br> তবে যেহেতু আপনারা নতুন তাই যে রম OS আপডেট দেয় না সেই রম দিয়েই শুরু করতে পারেন।</p><h2>পোর্ট কি করতেই হবেঃ</h2><p>এ\r\n ধরনের প্রশ্নও হতে পারে। যদি আপনার ফোন ভাল ব্রান্ডের হয় কিংবা নিজের \r\nফোনের জন্য গুগল সার্চ করে রম পেয়ে যান তবে সেটা আর পোর্ট করতে হবে না। \r\nকিন্তু যদি নিজের ফোনের জন্য রম না পান তবে সেক্ষেত্রে পোর্ট করতেই হবে। \r\nএখানে সার্চ করতেও বিভিন্ন নিয়ম মানতে হবে। সেগুলো জেনে নেই।</p><h2>নিজের ফোনের জন্য কাস্টম রমঃ</h2><p>দুই পদ্ধতিতে খুঁজতে পারেন।<br>\r\n ★ নিজের সেটের নাম দিয়েঃ এ জন্য গুগল এ গিয়ে সার্চ করুন Custom Rom For \r\nLava iris 505 এখানে Lava iris 505 এর জায়গায় নিজের সেটের নাম দিন। আরো \r\nএকটু যদি সার্চ এডভান্স হোন তবে সার্চ বারে Custom Rom এর জায়গাতে রমের নাম\r\n লিখে সার্চ দিন। যেমন CM For Lava iris 505. এভাবে নিজের ফোনের জন্য রম \r\nখুঁজে পেলে সেটা পোর্ট করতে হবে না। আর যদি না পান তো পরের পদ্ধতি ট্রাই \r\nকরুন।<br> ★ চিপসেট মডেল দিয়েঃ এক্ষেত্রে আপনাকে ফোনের চিপসেট মডেল ও ফোনের\r\n অ্যান্ড্রয়েড ভার্সন কাজে লাগিয়ে সার্চ করতে হবে, যেমন আমার ফোনের চিপসেট \r\nmt6572 ও অ্যান্ড্রয়েড ভার্সন 4.4.2। তো আমার সার্চ হবে Custom Rom For \r\nmt6572 4.4 2, অথবা CM for mt6572 4.4.2। এখানে অ্যান্ড্রয়েড ভার্সনের বদলে\r\n দুই অক্ষরের কোড দিতে পারেন। KK(Kitkat), LP(Lolipop), MM(Marshmallow) \r\nইত্যাদি।<br> রম খোঁজার আরো এক পদ্ধতি যা পরবর্তীতে কোন টিউন এ বলব।</p><h2>রম কিভাবে দিবঃ</h2><p>এটা নিয়ে আলাদা টিউন হবে, কারন এটা একটু রিস্কি কাজ। তাই বিস্তারিত লিখে টিউন করতে হবে। ততদিন নিজের ফোনের জন্য রম খুঁজুন।</p><h2>শেষ কথাঃ</h2><p>পরের পর্ব আলোচনা হবে রম পোর্টিং নিয়ে বিস্তারিত। ততদিন পর্যন্ত ভাল থাকুন, সুস্থ্য থাকুন। আর টেকনোলজির সাথেই থাকুন।</p>\r\n\r\n<br><p></p>', 0, NULL, NULL, NULL, NULL, '2018-02-28 13:01:16', '2018-02-28 13:01:16'),
-(3, 'Android এ জিরো থেকে হিরো [পর্ব-০১]', 'নতুনদের জন্য কিছু দিকনির্দেশনা-Root থেকে Custom পর্যন্ত', 'Android-এ-জিরো-থেকে-হিরো-পর্ব-০১', '<p>\r\n</p><p>সুপ্রিয় টিউনার, <b>আসসালামু আলাইকুম।</b> আশা করি সবাই ভালো আছেন। টিউন এর টাইটেল দেখেই হয়ত বুঝেই গেছেন এটা এন্ড্রয়েড নিয়ে চেইন বা সিরিজ টিউন।</p><h2>Android.</h2><p>বর্তামানের\r\n জনপ্রিয় মোবাইল অপারেটিং সিস্টেম। আর ওপেন সোর্স হওয়ায় এর মোড / চেঞ্জ \r\nসবাই করতে পারে। আমার এই সিরিজের মাধ্যমে নতুনদের কে সঠিক ভাবে কাজ করার \r\nপ্রক্রিয়া, ধাপ ও বিভিন্ন ট্রিক সম্পর্কে জানানো হবে। তাই আশা করি সাথেই \r\nথাকবেন।</p><p>তার আগে একটা ধাপ জেনে নিন যেটা সবার জানা উচিৎ। এই ধাপেধাপে কাজ করলে ফোন নিয়ে কাস্টোমার কেয়ারে দৌড়াদৌড়ি করতে হবে না (আমার মনে হয়)</p><p><b>রুট\r\n &gt; Xposed &gt; কাস্টম রিকভারী &gt; স্টক রমের ব্যাকাপ &gt; ফার্মওয়ার \r\nব্যাকাপ (Optional) &gt; নতুন রম পোর্ট &gt; নতুন রম দেওয়া.</b></p><p>আমার\r\n এই সিরিজে এই ধাপ গুলো বেশ ভালোভাবেই বলা হবে। অনেকে হয়ত এই ধাপ গুলো নিয়ে\r\n বিভিন্ন মত প্রকাশ করবে তাদের উদ্দ্যেশেঃ আমি আরো অনেক জিনিস স্কিপ / বাদ \r\nদিয়ে ছোট করে নিয়েছি।</p><p>আজ সিরিজ এর প্রথম পর্ব। আর এই পর্ব হচ্ছে কিছু\r\n দিক নির্দেশনা ও কিছু প্রশ্ন নিয়ে। টিউন এর পরেও যদি কোন প্রশ্ন থাকে তো \r\nটিউমেন্ট ও ফেসবুকে যোগাযোগ করতে পারেন<br> তো চলুন শুরু করা যাক।</p><h2>রুট কি, কেন, কিভাবে করবঃ</h2><p>এই\r\n প্রশ্ন শুনলে মাঝে মাঝে তারে ব্লক মারতে ইচ্ছা করে। আরে ভাই ইতিমধ্যে \r\nহাজারো টিউন হয়ে গেছে এই টপিক নিয়ে, ইংরেজিতে নয় বাংলায় \'রুট কি\' লিখে \r\nগুগলে সার্চ দিলে এত্ত বাংলা টিউন আসবে কল্পনাও করতে পারবেন না। আর \r\nপ্রত্যেক টিউনে এত ভালভাবে বোঝানো হয়েছে যে একটা টিউন পরলেই খেল খতম।</p><h2>তাও কেন এই প্রশ্ন করেন?</h2><p>প্রশ্ন করার আগে একটু ভাবেন। আমাদের তো কেউ ফোন কেনার সময় একটা বই দিয়ে বলে নাই যে যা এই বই পড় আর কাস্টম রম দে।<br> আমরাও গুগলসার্চ করেছি, হয়ত সেটা ইংরেজিতে, কিন্তু এখনকার দিনে কত টিউনার সেই কথা গুলো বাংলায় লিখেছে।<br> সেটা কবে দেখবেন?<br>\r\n গুগল তো আর সার্চ করার জন্য আলাদা টাকা চায় না। তো যে জিনিস একবার \r\nআবিষ্কার হয়েছে আমাদের দিয়ে সে জিনিস আবার আবিষ্কার করাতে চান কেন? নিজেই \r\nএকটু কষ্ট করে খুজে দেখুন। সব শেষ তাও রুট করতে পারলাম। ভাই মানুষ মাত্রই \r\nমরণশীল। কেউ ৬০ বছর আবার কেউ ১৬০। কিন্তু মরতেই হবে। সেরকমই রুট হবে। হয়ত \r\nসেটা দেরিতে। রুট করলাম, এখন,</p><h2>আমার ফোনের জন্য কাস্টম রিকভারী দেনঃ</h2><p>বলার\r\n আগে ভাবুন আপনার মডেল আর আমার মডেল এক নয়। তো যদি আপনি গুগলসার্চ করে না \r\nপান তো আমি কি করে দিব। সুখবর এই যে এখন পিসি ছাড়াই নিজের ফোন দিয়েই কাস্টম\r\n রিকভারী বানানো যায়। মজার কথা ট্রিকবিডিতেই সেই টিউন আছে। কিন্তু তাও \r\nপারেন না? এর জন্য একটা টিপস দেই আপনার ফোনের মডেল লিখে ফেসবুক সার্চ করে \r\nগ্রুপে এড হোন। সেখানে শুধু কাস্টম রিকভারী নয় রমও পেতে পারেন। কাস্টম \r\nরিকভারী আর রম আবার গুলিয়ে ফেইলেন না।</p><h2>আর কাস্টম রম নিয়ে একটু বলিঃ</h2><p>আমার\r\n দেয়া ধাপ গুলোতে কাস্টম রম সবার শেষে। যদি আগের ধাপ গুলো সাকসেসফুল হোন \r\nতবেই কাস্টম রম এর দিকে হাত বাড়ান নয়ত কাস্টোমার কেয়ারের দিকে হাত বাড়াতে \r\nহবে। কাস্টম রম নিয়ে সাধারণ কিছু ভুল আছে যেমনঃ</p><p>১. Custom Room / \r\nকাস্টম রুমঃ অনেকেই আমার কাছে এই শব্দ উচ্চারন করেছিলো। একবার Rom আর Room \r\nএর মাঝে তফাৎ তো দেখুন। অন্ধের মত না বলে অর্থ করে দেখুন, তো কি দাড়ায়?? \r\nআরে ভাই হেল্প চাইতে গিয়ে যদি এই সব হাবি জাবি বলেন তো হেল্প এর আশা কি করে\r\n করেন?</p><p>২. কাস্টম রম কিভাবে দিব? এই প্রশ্ন শুনে হতবাক হয়ে যাই, \r\nআসলেই এর ইন্সটান্ট উত্তর এখনো পাই নি। তাই Seen করে রেখে দেওয়া ছাড়া কোন \r\nকরার থাকে না।</p><p>৩. একজন বললো সে নাকি কাস্টম রম দিতে দিয়ে ফোন ব্রিক করছে। তো আমার কাছে ভালো করে রম দেওয়া শিখতে চাইলো।</p><p>আমি বললাম কি রিকভারী দেওয়া আছে আপনার?</p><p>উত্তরে বলল \'\'রিকভারী কি ভাইয়া?\'\'</p><p>কেমনটা লাগে?? সেজন্যই টিউন এর শুরুতে ধাপ গুলো দিলাম ভাল করে মনে রাখুন।</p><p>আর\r\n একটা অনুরোধ এই সব হাবিজাবি প্রশ্ন না করে একটু গুগল সার্চ করুন। আর একটু \r\nক্রিটিকাল প্রশ্ন করুন যাতে আমি না পারলেও আপনাদের মাধ্যমে আমারো শেখা হয়।</p>\r\n\r\n<p></p>', 0, NULL, NULL, NULL, NULL, '2018-02-28 13:03:43', '2018-02-28 13:03:43');
+(3, 'Google Clips review', 'A couple of things to know about Google Clips', 'google-clips-review', '<p>A couple of things to know about Google Clips: First, it is absolutely, unequivocally not a life-logging camera. Sure, it may be called Clips and it does, in fact, have a clip on the back. But do not clip it to your clothing.</p>\r\n\r\n<p>&nbsp;</p>\r\n\r\n<p>Second, it is not an action camera. There are plenty available, if you&rsquo;re in the market. Google Clips is not that. Don&rsquo;t attach it to your skydiving helmet or motorcycle handlebars. Third, Clips is unequivocally not a security camera. Again, there are plenty of those. Here&rsquo;s <a href=\"https://techcrunch.com/2018/02/19/the-20-wyze-security-camera-gets-a-sequel-with-improved-intelligence-and-amazon-echo-support/\" target=\"_blank\">one you can buy for $20</a>.</p>\r\n\r\n<p>So then what, precisely, is Clips? A &ldquo;smart camera,&rdquo; according to Google. It&rsquo;s a new category, of sorts. One that really couldn&rsquo;t have existed in this form without the current on-board technology. The device is actually a deceptively sophisticated collection of tech wrapped up in an adorable little package that looks like an Instagram icon that a fairy godmother turned into a real boy.</p>\r\n\r\n<p>It&rsquo;s not exactly the &ldquo;set it and forget it&rdquo; device that we thought we were getting when the company first announced it way back when at its Pixel 2 event. As advertised, Clips is intended to capture little moments it might otherwise be tough to photograph. The system uses a combination of AI and ML to identify familiar people and animals and determine the moments worth capturing.</p>\r\n\r\n<p>All of that happens through a robust combination of AI and ML, all processed directly on the device itself &mdash; rather than sending it off to a server for processing. This helps cut down on the processing time and maintains some privacy, with nothing you shoot leaving the camera until you choose to transfer it.</p>\r\n\r\n<p>It&rsquo;s an interesting concept &mdash; and one that could certainly appeal to parents looking to capture those little moments without having to keep a smartphone or camera screen at the ready all the time. But is it $249 worth of interesting?</p>\r\n\r\n<h2>Fixed lens</h2>\r\n\r\n<p><img alt=\"\" src=\"https://tctechcrunch2011.files.wordpress.com/2018/02/3q3a0029.jpg?w=1024&amp;h=683\" style=\"height:683px; width:1024px\" /></p>\r\n\r\n<p>A lot of thought clearly went into making Clips as simple as possible to operate. The result is an extremely minimalist object, roughly the size of a silver dollar. On the front is a large, fixed lens. Twisting it turns the camera on an off, while a trio of white lights let you know that it&rsquo;s on. Google says it purposely designed the Clips to be immediately recognizable as a camera, so people are aware that they&rsquo;re being recorded if they&rsquo;ve never seen one before. And, indeed, it looks like a real-world shorthand for the basic idea of a camera.</p>\r\n\r\n<p>Below the lens is a single button &mdash; the only one on the device itself. This is the shutter. Something the company apparently only added after getting feedback from users. Sure, the system is built around the notion of using machine learning to take the perfect photos and videos, but sometimes you want to override that and not leave it up to chance.</p>\r\n\r\n<p><img alt=\"\" src=\"https://tctechcrunch2011.files.wordpress.com/2018/02/3q3a0031-2.jpg?w=1024&amp;h=683\" style=\"height:683px; width:1024px\" /></p>\r\n\r\n<p>On the bottom is a USB-C port for charging the battery and a small hole used to manually reset the system. The back of the device, meanwhile, is empty, save for a Google &ldquo;G&rdquo; logo. There&rsquo;s no built-in viewfinder, for several reasons, including, but not limited to: price, battery life and the desire to simplify the product as much as possible.</p>\r\n\r\n<p>That means you&rsquo;ll have to sort of eyeball the ideal spot to place the camera to get the right shot. Given the fact that it&rsquo;s got a fixed focal length, there isn&rsquo;t a ton of wiggle room there. Google recommends placing it around three to eight feet from your subject. You also can tap into Live Preview on the accompanying app to get a better idea of what the camera is seeing. The feature also will let you know whether the camera is on a flat surface for better shots. Of course, staring at that sort of defeats the whole &ldquo;not having to keep a smartphone or camera screen at the ready all the time&rdquo; thing.</p>\r\n\r\n<h2>A river runs through it</h2>\r\n\r\n<p><img alt=\"\" src=\"https://tctechcrunch2011.files.wordpress.com/2018/02/3q3a0048.jpg?w=1024&amp;h=683\" style=\"height:683px; width:1024px\" /></p>\r\n\r\n<p>The Clips app is similarly simple, to a fault. By default, everything is captured in a seven-second video called&hellip; wait for it&hellip; a Clip. If you&rsquo;ve ever used Vine, Apple Live Photos or Google Motion Photos, you know the deal here. In fact, the videos shot on device can be saved as either of the latter two and, even more handily, an animated GIF.</p>\r\n\r\n<p>Everything captured by the device is served up in a river. All of the shots appear as static images, until you scroll over them, at which point you can view the full seven seconds of action.</p>\r\n\r\n<p><img alt=\"\" src=\"https://tctechcrunch2011.files.wordpress.com/2018/02/3q3a0049.jpg?w=1024&amp;h=683\" style=\"height:683px; width:1024px\" /></p>\r\n\r\n<p>Tap on a Clip to edit it either as a still image or motion video. The device actually saves every Clip as a series of stills. Using the Photo option, you can scroll through to grab the perfect frame and save that as a JPEG. The video editing option, meanwhile, has built-in scrubbers that let you edit the length of the Clip.</p>\r\n\r\n<h2>Machine learning</h2>\r\n\r\n<p><img alt=\"\" src=\"https://tctechcrunch2011.files.wordpress.com/2018/02/unnamed-1.gif?w=640&amp;h=405\" style=\"height:405px; width:640px\" /></p>\r\n\r\n<p>Once you start capturing shots, you&rsquo;ll notice that some sport a sparkle icon in the upper-right corner. That shows up on &ldquo;Suggested Clips&rdquo; &mdash; when the system identifies the face of a familiar person or pet. If you want to utilize the functionality, you can connect your device to your Google Photos account and the system will cull facial information from there.</p>\r\n\r\n<p>You also can just put the camera to use and it will pick up faces pretty quickly. That aspect did seem to be pretty hit or miss in our testing. There wasn&rsquo;t really much consistency with regard to which Clips of a particular subject the system identified as &ldquo;suggested.&rdquo; So far, it&rsquo;s been trained to capture humans, dogs and cats.</p>\r\n\r\n<p>I also can confirm that it does a pretty decent job on rabbits. The Google team wasn&rsquo;t really sure how it would fare on that front, given some of the complexities of the artificial intelligence on board. For example, the system is trained to identify certain aspects, like standing on four legs, whereas rabbits tend to sit on their hind legs. But Google&rsquo;s AI managed to prevail here, so kudos to them, and congrats to the dozen or so people looking to pick up a Clips to grab photos of their bunny.</p>\r\n\r\n<h2>One perfect shot</h2>\r\n\r\n<p><img alt=\"\" src=\"https://tctechcrunch2011.files.wordpress.com/2018/02/gc_20180220_162818_1519238574633-animation.gif?w=640&amp;h=405\" style=\"height:405px; width:640px\" /></p>\r\n\r\n<p>Clips mostly does a good job capturing key moments. It&rsquo;s not perfect, of course. And really, it requires a bit of good-old-fashioned human curation. That&rsquo;s where you come in. Odds are you&rsquo;re only going to end up sharing a fraction of the shots the camera ends up capturing.</p>\r\n\r\n<p>The device has 16GB of storage on board, so it&rsquo;s going to take you a while to fill the thing up with all of those 1080p videos &mdash; meaning it will be a while before you have to worry about going through and deleting things. The battery, meanwhile, should last around three hours on a charge. It also will go into sleep mode if it gets bored and doesn&rsquo;t spot any action.</p>\r\n\r\n<p>The videos are captured in 1080p and the stills are roughly what you&rsquo;d expect from a standard smartphone camera. And as with many smartphones, Clips struggles in low-light situations. Images come back grainy and motion is blurry. The device will auto-adjust color settings like the default on a handset. You can&rsquo;t futz with those levels in the camera app &mdash; and honestly that level of control probably runs counter to the sort of plug and play functionality Google&rsquo;s shooting for here. Though extra control is never a bad thing.</p>\r\n\r\n<h2>Money clips</h2>\r\n\r\n<p><img alt=\"\" src=\"https://tctechcrunch2011.files.wordpress.com/2018/02/3q3a0037.jpg?w=1024&amp;h=683\" style=\"height:683px; width:1024px\" /></p>\r\n\r\n<p>The first time I tested a smart security camera in my home, I ended up disabling the notifications. I was just getting way too many false positives. Every time my rabbit would move at home, the app would alert me, even if I was on the other side of the world. It was really annoying &mdash; but thankfully, the company added AI functionality that was able to distinguish animals and other movement from people.</p>\r\n\r\n<p>Clips sort of works on the opposite principle, operating on the idea that the right combination of image smarts can scientifically capture the perfect moment in time. It&rsquo;s a new piece of technology designed to free you from being constantly tethered to another piece of technology. It&rsquo;s an odd proposition, and ultimately one that will likely be searching to find its audience for a generation or two.</p>\r\n\r\n<p>Sure, there&rsquo;s appeal for parents looking to capture as many perfect moments with their kids before they get too old. And certainly plenty of pet owners need another excuse to fill their social media feeds full of adorable action shots. Clips certainly delivers as a GIF delivery service, but $249 is a steep price to pay for such novelty in an era when we&rsquo;ve all got a camera within arm&rsquo;s reach 24 hours a day.</p>', 1, NULL, NULL, NULL, NULL, '2018-03-01 22:42:24', '2018-03-01 22:42:24');
 
 -- --------------------------------------------------------
 
@@ -166,12 +172,21 @@ INSERT INTO `posts` (`id`, `title`, `subtitle`, `slug`, `body`, `status`, `poste
 --
 
 CREATE TABLE `post_tags` (
-  `id` int(10) UNSIGNED NOT NULL,
-  `post_id` int(11) NOT NULL,
-  `tag_id` int(11) NOT NULL,
+  `post_id` int(10) UNSIGNED NOT NULL,
+  `tag_id` int(10) UNSIGNED NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `post_tags`
+--
+
+INSERT INTO `post_tags` (`post_id`, `tag_id`, `created_at`, `updated_at`) VALUES
+(3, 5, '2018-03-01 22:42:24', '2018-03-01 22:42:24'),
+(3, 6, '2018-03-01 22:42:24', '2018-03-01 22:42:24'),
+(3, 7, '2018-03-01 22:42:24', '2018-03-01 22:42:24'),
+(3, 8, '2018-03-01 22:42:24', '2018-03-01 22:42:24');
 
 -- --------------------------------------------------------
 
@@ -205,13 +220,14 @@ CREATE TABLE `tags` (
 --
 
 INSERT INTO `tags` (`id`, `name`, `slug`, `created_at`, `updated_at`) VALUES
-(1, 'Laravel', 'laravel', '2018-02-26 22:59:28', '2018-02-26 22:59:28'),
-(2, 'Django', 'django', '2018-02-27 10:02:35', '2018-02-27 10:02:35'),
-(3, 'Codeigniter', 'codeigniter', '2018-02-27 11:21:28', '2018-02-27 11:21:28'),
-(4, 'Ruby on Rails', 'ruby-on-rails', '2018-02-27 11:22:23', '2018-02-27 11:22:23'),
-(5, 'Flask', 'flask', '2018-02-27 11:22:46', '2018-02-27 11:22:46'),
-(6, 'JQuery', 'jquery', '2018-02-27 11:23:22', '2018-02-27 11:23:22'),
-(7, 'ASP.NET MVC', 'asp.net-mvc', '2018-02-27 11:23:57', '2018-02-27 11:23:57');
+(1, 'Laravel', 'laravel', '2018-03-01 22:17:25', '2018-03-01 22:17:25'),
+(2, 'Codeigniter', 'codeigniter', '2018-03-01 22:17:40', '2018-03-01 22:17:40'),
+(3, 'Symphony', 'symphony', '2018-03-01 22:17:57', '2018-03-01 22:17:57'),
+(4, 'Django', 'django', '2018-03-01 22:18:09', '2018-03-01 22:18:09'),
+(5, 'Google', 'google', '2018-03-01 22:39:51', '2018-03-01 22:39:51'),
+(6, 'Hardware', 'hardware', '2018-03-01 22:40:17', '2018-03-01 22:40:17'),
+(7, 'Digital Cameras', 'digital-cameras', '2018-03-01 22:40:45', '2018-03-01 22:40:45'),
+(8, 'Google Clips', 'google-clips', '2018-03-01 22:41:09', '2018-03-01 22:41:09');
 
 -- --------------------------------------------------------
 
@@ -256,7 +272,8 @@ ALTER TABLE `categories`
 -- Indexes for table `category_posts`
 --
 ALTER TABLE `category_posts`
-  ADD PRIMARY KEY (`id`);
+  ADD KEY `category_posts_post_id_index` (`post_id`),
+  ADD KEY `category_posts_category_id_index` (`category_id`);
 
 --
 -- Indexes for table `migrations`
@@ -280,7 +297,8 @@ ALTER TABLE `posts`
 -- Indexes for table `post_tags`
 --
 ALTER TABLE `post_tags`
-  ADD PRIMARY KEY (`id`);
+  ADD KEY `post_tags_post_id_index` (`post_id`),
+  ADD KEY `post_tags_tag_id_index` (`tag_id`);
 
 --
 -- Indexes for table `roles`
@@ -321,31 +339,19 @@ ALTER TABLE `admin_roles`
 -- AUTO_INCREMENT for table `categories`
 --
 ALTER TABLE `categories`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
-
---
--- AUTO_INCREMENT for table `category_posts`
---
-ALTER TABLE `category_posts`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=43;
 
 --
 -- AUTO_INCREMENT for table `posts`
 --
 ALTER TABLE `posts`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
-
---
--- AUTO_INCREMENT for table `post_tags`
---
-ALTER TABLE `post_tags`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `roles`
@@ -357,13 +363,29 @@ ALTER TABLE `roles`
 -- AUTO_INCREMENT for table `tags`
 --
 ALTER TABLE `tags`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
+-- Constraints for dumped tables
+--
+
+--
+-- Constraints for table `category_posts`
+--
+ALTER TABLE `category_posts`
+  ADD CONSTRAINT `category_posts_post_id_foreign` FOREIGN KEY (`post_id`) REFERENCES `posts` (`id`) ON DELETE CASCADE;
+
+--
+-- Constraints for table `post_tags`
+--
+ALTER TABLE `post_tags`
+  ADD CONSTRAINT `post_tags_post_id_foreign` FOREIGN KEY (`post_id`) REFERENCES `posts` (`id`) ON DELETE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

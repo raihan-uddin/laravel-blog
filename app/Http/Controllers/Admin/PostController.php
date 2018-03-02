@@ -80,7 +80,7 @@ class PostController extends Controller
     public function edit($id)
     {
         // $post = post::where('id', $id)->get();return $post;
-        $post = post::where('id', $id)->first();
+        $post = post::with('tags', 'categories')->where('id', $id)->first();
         $tags = tag::all();
         $categories = category::all();
         return view('admin.post.edit', compact('post','tags', 'categories'));
