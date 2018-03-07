@@ -8,6 +8,7 @@
 
 @section('sub-heading', $post->subtitle)
 
+@section('main-content')
 <div id="fb-root"></div>
 <script>(function(d, s, id) {
   var js, fjs = d.getElementsByTagName(s)[0];
@@ -16,8 +17,6 @@
   js.src = 'https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.12&appId=444649185954823&autoLogAppEvents=1';
   fjs.parentNode.insertBefore(js, fjs);
 }(document, 'script', 'facebook-jssdk'));</script>
-
-@section('main-content')
 <!-- Post Content -->
     <article>
       <div class="container">

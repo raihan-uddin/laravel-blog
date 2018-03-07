@@ -137,6 +137,9 @@
 <!-- CK Editor -->
 {{-- <script src="{{ asset('admin/bower_components/ckeditor/ckeditor.js')}}"></script> --}}
 <script src="//cdn.ckeditor.com/4.8.0/full/ckeditor.js"></script>
+<!-- Select2 -->
+<script src="{{ asset('admin/bower_components/select2/dist/js/select2.full.min.js')}}"></script>
+<!-- Page script -->
 <script>
   $(function () {
     // Replace the <textarea id="editor1"> with a CKEditor
@@ -144,13 +147,6 @@
     CKEDITOR.replace('editor1')
     //bootstrap WYSIHTML5 - text editor
     $('.textarea').wysihtml5()
-  })
-</script>
-<!-- Select2 -->
-<script src="{{ asset('admin/bower_components/select2/dist/js/select2.full.min.js')}}"></script>
-<!-- Page script -->
-<script>
-  $(function () {
     //Initialize Select2 Elements
     $('.select2').select2()
   })
