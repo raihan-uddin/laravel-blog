@@ -3,7 +3,10 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Raihan's Blog</title>
+    <title>
+        @section('browserTitle')
+        @show
+    </title>
 
     <!-- Bootstrap core CSS -->
     <link href="{{ asset('user/vendor/bootstrap/css/bootstrap.min.css')}}" rel="stylesheet">
