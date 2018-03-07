@@ -6,6 +6,10 @@
 
 @section('title', 'Programmer Blog')
 
+@section('head')
+<link rel="stylesheet" type="text/css" href="{{ asset('user/css/style.css') }}">
+@endsection
+
 @section('sub-heading', 'Learn Together and Grow Together')
 
 @section('main-content')
@@ -32,11 +36,14 @@
          
           <!-- Pager -->
           <div class="clearfix">
-            <a class="btn btn-primary float-right" href="#">Older Posts &rarr;</a>
-          </div>
+            <ul class="pagination">
+              <li>
+              {{ $posts->links()}}
+            </li>
+            </ul>                 
         </div>
       </div>
     </div>
-
+  </div>
     <hr>
 @endsection
