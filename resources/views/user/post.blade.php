@@ -27,7 +27,7 @@
             {{-- Categories Clouds --}}
             @foreach ($post->categories as $category)
                 <small class="pull-right" style="margin-right: 20px;">
-                  <a href="#">{{ $category->name }}</a>
+                  <a href="{{ route('category', $category->slug) }}">{{ $category->name }}</a>
                 </small>
               @endforeach
             {!! htmlspecialchars_decode($post->body) !!}
@@ -35,7 +35,7 @@
             {{-- Tag Clouds --}}
             <h3>Tag clouds</h3>
             @foreach ($post->tags as $tag)
-              <a href="#">
+              <a href="{{ route('tag', $tag->slug) }}">
                 <small class="pull-left" style="margin-right: 20px; border-radius: 5px; border: 1px solid gray; padding: 5px;">
                   {{ $tag->name }}
                 </small>
