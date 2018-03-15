@@ -28,9 +28,9 @@ class PostController extends Controller
      */
     public function create()
     {
-        $tags = tag::all();
-        $categories = category::all();
-        return view('admin.post.post', compact('tags', 'categories'));
+        $data['tags'] = tag::all();
+        $data['categories'] = category::all();
+        return view('admin.post.post', $data);
     }
 
     /**
@@ -80,10 +80,10 @@ class PostController extends Controller
     public function edit($id)
     {
         // $post = post::where('id', $id)->get();return $post;
-        $post = post::with('tags', 'categories')->where('id', $id)->first();
-        $tags = tag::all();
-        $categories = category::all();
-        return view('admin.post.edit', compact('post','tags', 'categories'));
+        $data['post'] = post::with('tags', 'categories')->whereId($id)->first();
+        $data['tags'] = tag::all();
+        $data['categories'] = category::all();
+        return view('admin.post.edit', $data);
     }
 
     /**

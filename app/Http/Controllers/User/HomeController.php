@@ -1,5 +1,4 @@
 <?php
-
 namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
@@ -11,8 +10,17 @@ class HomeController extends Controller
     public function index()
     {
     	// $posts = post::where('status',1)->get();
-    	$posts = post::where('status',1)->paginate(5);
+    	$posts = post::whereStatus(1)->paginate(5);
     	// return $posts;
     	return view('user.blog', compact('posts'));
+    }
+
+    public function tag()
+    {
+    	return $request->all();
+    }
+    public function category()
+    {
+    	return $request->all();
     }
 }

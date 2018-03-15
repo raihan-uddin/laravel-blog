@@ -35,9 +35,11 @@
             {{-- Tag Clouds --}}
             <h3>Tag clouds</h3>
             @foreach ($post->tags as $tag)
+              <a href="#">
                 <small class="pull-left" style="margin-right: 20px; border-radius: 5px; border: 1px solid gray; padding: 5px;">
-                  <a href="#">{{ $tag->name }}</a>
+                  {{ $tag->name }}
                 </small>
+                </a>
               @endforeach
               <div class="fb-comments" data-href="{{ Request::url()}}" data-numposts="5"></div>
           </div>
